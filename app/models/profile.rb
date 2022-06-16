@@ -7,4 +7,14 @@ class Profile < ApplicationRecord
   has_many :users
   has_many :doctors
 
+  validates :phone_number, uniqueness: true
+
+def email_required?
+ false
+end
+
+def email_changed?
+ false
+end
+
 end
