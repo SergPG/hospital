@@ -1,2 +1,25 @@
+<h2> Appointment for  <%= @appointment.user.first_name  %> <%= @appointment.user.last_name  %> </h2>
+<p> Date:  <%= @appointment.date_at %> </p>
+<p> With doctor: <%= @appointment.doctor.first_name %> <%= @appointment.doctor.last_name %> </p>
+<% if @appointment.completed? %>
+  <p> Status: Completed </p>
+  <p> Recommendation: <%=@appointment.recommendation %></p>
+<% else %>
+  <% if current_profile.doctor? %>
+    <%= form_with model: @appointment, url: complete_appointment_path do |form| %>
+      <div class="form-select">
+        <%= form.label :recommendation %>
+        <br>
+        <%= form.text_field :recommendation %>
+        <br>
+      </div>
 
-<h2> Appointment for  <%= @appointment.user.first_name  %>  </h2>
+      <div>
+        <br>
+        <%= form.submit :complete %>
+      </div>
+
+    <% end %>
+    </div>
+  <% end %>
+<% end %>

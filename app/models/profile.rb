@@ -17,4 +17,8 @@ class Profile < ApplicationRecord
    false
   end
 
+  def doctor?
+    doctor.present?
+  end
+
 end
