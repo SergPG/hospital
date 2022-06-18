@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_171109) do
     t.bigint "user_id", null: false
     t.text "recommendation"
     t.datetime "date_at"
-    t.string "status"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
