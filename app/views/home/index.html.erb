@@ -4,6 +4,7 @@
 
     <% if profile_signed_in?   %>
         <p> <%= current_profile.first_name %> </p>
+        <%= link_to "My Profile", profile_path(current_profile.id)  %>
     <% else %>  
         <p> No User </p>
     <% end %>  

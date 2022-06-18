@@ -5,7 +5,8 @@ Rails.application.routes.draw do
    get 'home/index'
    root to: 'home#index'
    resources :profiles, only: [:show]
-  
+   
+   resources :users, only: [:show]
    resources :appointments 
 
 end

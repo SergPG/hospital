@@ -1,8 +1,8 @@
-<p> <%= current_profile.first_name %> </p>
+<h2>User - <%= current_profile.first_name %> </h2>
 
-<h1>Appointments</h1>
+<h3>Appointments</h3>
 <%# <% binding.pry %>
-<%# <% @appointments.each do |appointment| %>
+<% @appointments.each do |appointment| %>
 
-<p> Doctor:  <%#<%=appointment.doctor&.first_name %> <%#<%=appointment.doctor&.last_name %> - Status: <%#<%=appointment.status %> </p>
-<%# <% end %>
+<p> Doctor:  <%=appointment.doctor&.first_name %> <%=appointment.doctor&.last_name %> - Date at: <%=appointment.date_at %> </p>
+ <% end %>
