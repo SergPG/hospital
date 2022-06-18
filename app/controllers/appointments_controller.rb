@@ -5,64 +5,33 @@ class AppointmentsController < ApplicationController
     end
     
     def show
-        @appointment = "Appointment ID"
+        @appointment = Appointment.find(params[:id])
     end
 
     def new
         @appointment = Appointment.new
-
         @doctors = Doctor.all
-
-        
-
     end
 
-    def create
-        
-        
-      
+    def create     
+    # @appointment = сurrent_profile.user.appointments.new(appointment_params)
 
     @appointment = Appointment.new(appointment_params)
-        
-    # @appointment.doctor_id = params.require(:doctor_id)
     @appointment.user_id =  current_profile.user.id
-
-
-    
-     
-      
 
         if @appointment.save
           redirect_to @appointment
         else
           render :new, status: :unprocessable_entity
         end
-
-
     end
 
     private
-    def appointment_params
-        
-        
-        # @appointment.doctor_id = params.require(:doctor_id)
-    # @appointment.user_id =  current_profile.user.id
-        
+    def appointment_params 
     # binding.pry
-
-     result = params.require(:appointment).permit(
+        params.require(:appointment).permit(
                 :doctor_id,
-                :date_at
-                 )
-
-    #  result.push(['user_id' => current_profile.user.id  ])  
-
+                :date_at )
     end 
-
-   
-
-
-
-
 
 end
