@@ -4,17 +4,17 @@ class Profile < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :users
-  has_many :doctors
+  has_one :user
+  has_one :doctor
 
   validates :phone_number, uniqueness: true
 
-def email_required?
- false
-end
+  def email_required?
+   false
+  end
 
-def email_changed?
- false
-end
+  def email_changed?
+   false
+  end
 
 end

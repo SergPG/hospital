@@ -3,7 +3,7 @@
 
 
     <% if profile_signed_in?   %>
-        <p> <%= current_profile %> </p>
+        <p> <%= current_profile.first_name %> </p>
     <% else %>  
         <p> No User </p>
     <% end %>  

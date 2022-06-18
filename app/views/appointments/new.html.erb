@@ -1,0 +1,29 @@
+
+<h2> New Aappointment </h2>
+
+<%= form_with model: @appointment do |form| %>
+
+
+<div class="form-select">
+   <%= form.label :doctor_id %>
+   <br>
+   <%= form.select :doctor_id,
+        @doctors.collect { |doctor| [ doctor.first_name, doctor.id ] }  %>
+    <br>    
+</div>
+
+<div class="form-select-date">
+    <%= form.label :date_at %>
+    <br>
+    <%= form.date_select(:date_at, order: [:day, :month, :year]) %>
+    <br>
+</div>
+
+
+<div>
+    <br>
+    <%= form.submit %>
+</div>
+
+<% end %>
+

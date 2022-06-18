@@ -11,7 +11,15 @@
   </head>
 
   <body>
-     <%= link_to "Logout", destroy_profile_session_path, method: 'delete' %>
+    
+    <% if profile_signed_in?   %>
+        <%= link_to "Logout", destroy_profile_session_path, data: { 'turbo-method': :delete } %>
+    <% else %>  
+        <%= link_to "Log in", new_profile_session_path  %>
+    <% end %>  
+
+
+     
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
