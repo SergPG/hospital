@@ -4,5 +4,5 @@ class Doctor < ApplicationRecord
   has_many :appointments
   has_many :users, through: :appointments
 
-  delegate :first_name, :last_name, to: :profile
+  delegate :first_name, :last_name, :full_name, to: :profile
 end
