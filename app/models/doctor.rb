@@ -7,4 +7,6 @@ class Doctor < ApplicationRecord
   has_many :patients, through: :appointments
 
   delegate :first_name, :last_name, :full_name, to: :user
+
+  scope :by_category, ->(value) { where(category_id: value) } 
 end

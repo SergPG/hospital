@@ -9,7 +9,8 @@ class AppointmentsController < ApplicationController
 
     def new
       @appointment = Appointment.new
-      @doctors = Doctor.all
+      @categories = Category.all
+      @doctors = category.present? ? Doctor.by_category(category.id) : Doctor.all
     end
 
     def create
@@ -46,5 +47,9 @@ class AppointmentsController < ApplicationController
 
     def appointment_complete_params
       params.require(:appointment).permit(:recommendation)
+    end
+
+    def category
+      @category ||= Category.find_by(id: params[:category_id])
     end
 end
