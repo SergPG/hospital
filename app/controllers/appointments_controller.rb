@@ -1,5 +1,4 @@
 class AppointmentsController < ApplicationController
-  load_and_authorize_resource
     def index
       @appointments = Appointment.all
     end
@@ -14,8 +13,8 @@ class AppointmentsController < ApplicationController
     end
 
     def create
-      authorize! :create, Appointment
-      result = Appointments::Create.new(current_profile.user, appointment_new_params).call
+      # authorize! :create, Appointment
+      result = Appointments::Create.new(current_user.patient, appointment_new_params).call
 
       if result[:errors].blank?
         redirect_to result

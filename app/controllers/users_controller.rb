@@ -1,5 +1,7 @@
-class UsersController < ApplicationController
-    def show
-        # @appointments = current_profile.user.appointments
-    end
+class UsersController < ApplicationController    
+  def show
+    @model = current_user.doctor? ? Doctor : Patient
+    @appointments = @model.find_by(user: current_user).appointments
+  end
 end
+  

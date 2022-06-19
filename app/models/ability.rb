@@ -3,8 +3,8 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(profile)
-    if profile.user?
+  def initialize(user)
+    if user.patient?
       can :create, Appointment
     end
   end

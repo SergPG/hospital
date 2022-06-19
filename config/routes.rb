@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
-  devise_for :profiles, controllers: {
-    registrations: 'profiles/registrations'
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
   }
 
   ActiveAdmin.routes(self)
   
    get 'home/index'
    root to: 'home#index'
-   resources :profiles, only: [:show]
+   resources :users, only: [:show]
 
    resources :appointments do
     patch :complete, on: :member
    end
    
-   resources :users, only: [:show]
+   resources :patients, only: [:show]
     
 
 end

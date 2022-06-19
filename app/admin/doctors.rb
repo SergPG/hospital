@@ -7,7 +7,7 @@ ActiveAdmin.register Doctor do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :profile_id, :category_id
+  # permit_params :user_id, :category_id
   #
   # or
   #
@@ -15,7 +15,7 @@ ActiveAdmin.register Doctor do
     f.inputs do
       f.input :category
     end
-    f.inputs :profile, for: [:profile] do |d|
+    f.inputs :user, for: [:user] do |d|
       d.input :phone_number
       d.input :first_name
       d.input :last_name
@@ -25,19 +25,19 @@ ActiveAdmin.register Doctor do
   end
 
   permit_params do
-    [:profile, :category_id]
+    [:user, :category_id]
   end
 
   before_create do |doctor|
-    doctor.profile = Profile.create(params.require(:doctor)
-                                          .require(:profile)
+    doctor.user = User.create(params.require(:doctor)
+                                          .require(:user)
                                           .permit(:phone_number, :password, :first_name, :last_name)
                                     )
   end
 
   controller do
     def scoped_collection
-      super.includes :profile # prevents N+1 queries to your database
+      super.includes :user # prevents N+1 queries to your database
     end
   end
 

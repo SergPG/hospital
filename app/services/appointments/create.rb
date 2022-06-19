@@ -1,6 +1,6 @@
 class Appointments::Create
-    def initialize(user, params)
-      @user = user
+    def initialize(patient, params)
+      @patient = patient
       @params = params
       @errors = []
     end
@@ -14,7 +14,7 @@ class Appointments::Create
   
     private
   
-    attr_accessor :user, :params, :errors
+    attr_accessor :patient, :params, :errors
   
     def validate_doctor_appointment_count
       errors.push(doctor_id: 'can not be empty') if doctor.nil?
@@ -26,7 +26,7 @@ class Appointments::Create
     end
   
     def create
-      appointment = user.appointments.new(params)
+      appointment = patient.appointments.new(params)
       if appointment.save
         appointment
       else
