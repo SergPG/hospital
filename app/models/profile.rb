@@ -21,6 +21,10 @@ class Profile < ApplicationRecord
     doctor.present?
   end
 
+  def user?
+    user.present?
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end

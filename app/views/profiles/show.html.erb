@@ -1,8 +1,7 @@
-<h2>User - <%= current_profile.first_name %> </h2>
+<h2><%= current_profile.full_name %> </h2>
 
+<%= link_to('New Appointment', new_appointment_path) if current_profile.user?%>
 <h3>Appointments</h3>
-<%# <% binding.pry %>
 <% @appointments.each do |appointment| %>
-
-<p> Doctor:  <%=appointment.doctor&.first_name %> <%=appointment.doctor&.last_name %> - Date at: <%=appointment.date_at %> </p>
- <% end %>
+  <p> <%= current_profile.doctor? ? "User: #{appointment.user.full_name}" : "Doctor: #{appointment.doctor.full_name}" %> - Date at: <%=appointment.date_at %> Recommendation: <%= appointment.recommendation%> <%= link_to 'View', appointment%> </p>
+<% end %>

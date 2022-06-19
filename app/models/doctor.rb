@@ -1,4 +1,6 @@
 class Doctor < ApplicationRecord
+  MAX_APPOINTMENTS = 10
+
   belongs_to :profile
   belongs_to :category
   has_many :appointments
