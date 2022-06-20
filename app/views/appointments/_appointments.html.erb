@@ -1,0 +1,48 @@
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">
+         <%= current_user.doctor? ? "Patient" : "Doctor" %>     
+      </th>
+      <th scope="col">Date at</th>
+      <th scope="col">Recommendation</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+   
+    <% appointments.each_with_index do |appointment, index| %>
+    <tr>
+        <th scope="row"> <%=  index + 1  %> </th>
+        <td>
+          <%= current_user.doctor? ? "#{appointment.patient.full_name}" : "#{appointment.doctor.full_name}" %>
+        </td>
+        <td>
+          <%=appointment.date_at %>
+        </td>
+        <td>
+          <% if appointment.completed? %>
+            Completed 
+          <% else %>
+            Not Completed 
+          <% end %>
+        </td>
+        <td>
+           <%  if current_user.doctor? %>
+                <% if appointment.completed? %>
+                    <%= link_to 'View', appointment, class:"btn btn-primary btn-sm" %> 
+                <% else %>
+                    <%= link_to 'Edit', appointment, class:"btn btn-warning btn-sm" %> 
+                <% end %>
+            <% else %>  
+                <%= link_to 'View', appointment, class:"btn btn-primary btn-sm" %>
+            <% end %>    
+          
+        </td>
+    </tr>   
+    <% end %>
+ 
+  </tbody>
+</table>
+

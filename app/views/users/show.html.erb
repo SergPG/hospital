@@ -1,7 +1,48 @@
-<h2><%= current_user.full_name %> </h2>
+<div class="container">
 
-<%= link_to('New Appointment', new_appointment_path) %>
-<h3>Appointments</h3>
-<% @appointments.each do |appointment| %>
-  <p> <%= current_user.doctor? ? "Patient: #{appointment.patient.full_name}" : "Doctor: #{appointment.doctor.full_name}" %> - Date at: <%=appointment.date_at %> Recommendation: <%= appointment.recommendation%> <%= link_to 'View', appointment%> </p>
-<% end %>
+<h2>My profile:  <%= current_user.full_name %> </h2>
+
+
+<div>
+  <% if !current_user.doctor?  %>
+    <%= link_to 'Create appointment', new_appointment_path, class: 'btn btn-primary btn-sm' %>
+  <% end %>
+</div> 
+ 
+  <table class="table">
+  <thead>
+    <tr>
+      <th style="width: 20%"></th>
+      <th style="width: 80%"></th>    
+    </tr> 
+  </thead>
+  <tbody>
+    
+    <% if current_user.doctor?  %>
+    <tr>
+      <th scope="row">Category</th>
+      <td>
+        <%= current_user.doctor.category.name %>
+      </td>
+    </tr>
+    <% end %>
+
+
+    <tr>
+      <th scope="row">
+        <%= current_user.doctor? ? "Doctor" : "Patient" %> 
+      </th>
+      <td>
+        <%= current_user.full_name %>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">Phone</th>
+      <td>
+        <%= current_user.phone_number %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</div>

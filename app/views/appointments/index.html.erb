@@ -1,1 +1,5 @@
-<h2>  Appointments </h2>
+
+<h2> Appointments for  <%= current_user.full_name  %> </h2>
+
+<%= render "appointments", appointments: @appointments %>
+
