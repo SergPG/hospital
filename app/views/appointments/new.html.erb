@@ -8,7 +8,10 @@
    <br>
    <%= form.select :doctor_id,
         @doctors.collect { |doctor| [ doctor.first_name, doctor.id ] }  %>
-    <br>    
+    <br>
+    <% @appointment.errors.full_messages_for(:doctor_id).each do |message| %>
+      <div><%= message %></div>
+    <% end %>    
 </div>
 
 <div class="form-select-date">
@@ -16,6 +19,9 @@
     <br>
     <%= form.date_select(:date_at, order: [:day, :month, :year]) %>
     <br>
+    <% @appointment.errors.full_messages_for(:date_at).each do |message| %>
+      <div><%= message %></div>
+    <% end %>  
 </div>
 
 <div>
