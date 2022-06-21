@@ -4,7 +4,6 @@ class AppointmentsController < ApplicationController
     end
     
     def show
-        appointment
     end
 
     def new
@@ -14,8 +13,7 @@ class AppointmentsController < ApplicationController
     end
 
     def create
-      # authorize! :create, Appointment
-      result = Appointments::Create.new(current_user.patient, appointment_new_params).call
+      result = Appointments::Create.new(current_user.patient, create_params).call
 
       if result[:errors].blank?
         redirect_to result
@@ -26,7 +24,7 @@ class AppointmentsController < ApplicationController
     end
 
     def complete
-      result = Appointments::Complete.new(appointment, appointment_complete_params).call
+      result = Appointments::Complete.new(@appointment, appointment_complete_params).call
 
       if result[:errors].blank?
         redirect_to result
@@ -37,11 +35,11 @@ class AppointmentsController < ApplicationController
   
     private
 
-    def appointment
-      @appointment ||= Appointment.find(params[:id])
-    end
+    # def appointment
+    #   @appointment ||= Appointment.find(params[:id])
+    # end
 
-    def appointment_new_params
+    def create_params
       params.require(:appointment).permit(:doctor_id, :date_at)
     end
 
