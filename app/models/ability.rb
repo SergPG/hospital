@@ -21,7 +21,8 @@ class Ability
       can :read, Appointment, doctor: user.doctor
     end
 
-    # return unless user.admin?
-    # can [:manage], :all
+    return unless user.admin?
+    can [:manage], :all
+    can :manage, ActiveAdmin::Page
   end
 end
