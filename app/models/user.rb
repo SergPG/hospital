@@ -8,7 +8,12 @@ class User < ApplicationRecord
   has_one :doctor
   has_one :admin
 
-  validates :phone_number, uniqueness: true
+  validates :phone_number,
+    presence: true,
+    uniqueness: { case_sensitive: false },
+    numericality: true,
+    length: { minimum: 10, maximum: 15 }
+
 
   def email_required?
    false

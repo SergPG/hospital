@@ -3,7 +3,7 @@
 
 <%= form_with model: @appointment do |form| %>
 
-<%# <%= collection_select('category', "id", @categories , :id, :name, { prompt: 'Select category if need', selected: @category }, :onchange => "location.href = '#{new_appointment_path(category_id: category_id)}'") %>
+<%= collection_select('category', "id", @categories , :id, :name, { prompt: 'Select category if need', selected: @category.id}, {class: 'categories'} ) %>
 
 <div class="form-select">
    <%= form.label :doctor_id %>
@@ -26,4 +26,11 @@
 </div>
 
 <% end %>
+<script>
 
+$('.categories').on('change', function(){
+    var currentVal = $(this).val();
+    debugger;
+    window.location.href = "<%= new_appointment_path%>?category_id=" + currentVal
+});
+</script>
