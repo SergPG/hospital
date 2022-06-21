@@ -4,12 +4,12 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-
     can :read, Doctor
 
     return unless user.present?
 
     can [:read, :manage], User, id: user.id
+    # can :read, ActiveAdmin::Page, name: "Dashboard", namespace_name: "admin"
 
     if user.patient?
       can :create, Appointment

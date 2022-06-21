@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_one :patient
   has_one :doctor
+  has_one :admin
 
   validates :phone_number, uniqueness: true
 
@@ -34,6 +35,6 @@ class User < ApplicationRecord
   end
 
   def admin?
-    false
+    admin.present?
   end
 end
