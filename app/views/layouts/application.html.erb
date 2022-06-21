@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8" />
     <title>Hospital</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   </head>
 
-  <body>
-    
-    <% if user_signed_in?   %>
-        <%= link_to "Logout", destroy_user_session_path, data: { 'turbo-method': :delete } %>
-    <% else %>  
-        <%= link_to "Log in", new_user_session_path  %>
-    <% end %>  
-     
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <body >
 
-    <%= yield %>
+     <%= render "shared/header" %>
+
+
+
+    <main class="container">
+      <div class="container px-4 px-lg-5">
+        <%= yield %>
+      </div>  
+    </main>
+
+
+    <%= render "shared/footer" %>
   </body>
 </html>

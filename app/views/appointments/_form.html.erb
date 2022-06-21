@@ -1,0 +1,29 @@
+
+<div class="container" >
+<div class="row ">
+<%= form_with model: appointment do |form| %>
+
+<div class=" col-auto mb-3">
+   <%= form.label :doctor_id , class: "form-label" %>
+   <%= form.select :doctor_id,
+        doctors.collect { |doctor| [ doctor.first_name, doctor.id ] }  %>
+    <% appointment.errors.full_messages_for(:doctor_id).each do |message| %>
+      <div><%= message %></div>
+    <% end %>    
+</div>
+
+<div class=" col-auto mb-3">
+    <%= form.label :date_at, class: "form-label" %>
+    <%= form.date_select(:date_at, order: [:day, :month, :year]) %>
+    <% appointment.errors.full_messages_for(:date_at).each do |message| %>
+      <div><%= message %></div>
+    <% end %>  
+</div>
+
+<div class=" col-auto mb-3">
+    <%= form.submit %>
+</div>
+
+<% end %>
+</div>
+</div>

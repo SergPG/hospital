@@ -1,13 +1,14 @@
 class AppointmentsController < ApplicationController
     def index
-      @appointments = Appointment.all
+      @model = current_user.doctor? ? Doctor : Patient
+      @appointments = @model.find_by(user: current_user).appointments
     end
     
     def show
     end
 
     def new
-      @appointment = Appointment.new
+      @appointment = Appointment.new(params.permit(:doctor_id))
       @categories = Category.all
       @doctors = category.present? ? Doctor.by_category(category.id) : Doctor.all
     end
