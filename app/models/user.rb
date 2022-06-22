@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -9,18 +11,17 @@ class User < ApplicationRecord
   has_one :admin
 
   validates :phone_number,
-    presence: true,
-    uniqueness: { case_sensitive: false },
-    numericality: true,
-    length: { minimum: 10, maximum: 15 }
-
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            numericality: true,
+            length: { minimum: 10, maximum: 15 }
 
   def email_required?
-   false
+    false
   end
 
   def email_changed?
-   false
+    false
   end
 
   def doctor?

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PatientController < ApplicationController
-    def show
-        # @appointments = current_profile.user.appointments
-    end
+  def show
+    # @appointments = current_profile.user.appointments
+  end
 end

@@ -8,12 +8,12 @@ class Ability
 
     return unless user.present?
 
-    can [:read, :manage], User, id: user.id
+    can %i[read manage], User, id: user.id
     # can :read, ActiveAdmin::Page, name: "Dashboard", namespace_name: "admin"
 
     if user.patient?
       can :create, Appointment
-      can :read, Appointment, patient: user.patient 
+      can :read, Appointment, patient: user.patient
     end
 
     if user.doctor?
@@ -22,6 +22,7 @@ class Ability
     end
 
     return unless user.admin?
+
     can [:manage], :all
     can :manage, ActiveAdmin::Page
   end

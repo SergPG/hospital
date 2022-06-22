@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAppointments < ActiveRecord::Migration[7.0]
   def change
     create_table :appointments do |t|
@@ -6,7 +8,6 @@ class CreateAppointments < ActiveRecord::Migration[7.0]
       t.text :recommendation
       t.datetime :date_at
       t.integer :status, default: 0
-
 
       t.timestamps
     end
