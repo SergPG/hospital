@@ -17,7 +17,7 @@
    <%= form.label :doctor_id , class: "form-label" %>
    <br>
    <%= form.select :doctor_id,
-        doctors.collect { |doctor| [ doctor.first_name, doctor.id ] }, {}, {class: "form-select"} %>
+        doctors.collect { |doctor| [ doctor.full_name , doctor.id ] }, {}, {class: "form-select"} %>
     <% appointment.errors.full_messages_for(:doctor_id).each do |message| %>
       <div><%= message %></div>
     <% end %>    

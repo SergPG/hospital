@@ -9,9 +9,9 @@
     <%= form_with model: @appointment, url: complete_appointment_path do |form| %>
 
       <div class=" col-auto mb-1">
-        <%= form.label :recommendation , class: "form-label" %>
+        <%= form.label :recommendation, class: "form-label" %>
         <br>
-        <%= form.text_field :recommendation %>
+        <%= form.text_field :recommendation, required: true, id: :recommendation %>
        </div>
       <div class="col-auto mb-3">
           <%= form.submit 'Complete', class: "btn btn-primary" %>

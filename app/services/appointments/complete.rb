@@ -21,7 +21,7 @@ module Appointments
 
     def validate_object
       errors.push(status: 'can not complete from this status') if appointment.completed?
-      errors.push(date_at: 'date_at greater than current date') if appointment.date_at > DateTime.current
+      errors.push(recommendation: 'can not be blank') if appointment_params[:recommendation].blank?
     end
 
     def complete
