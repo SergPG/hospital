@@ -1,12 +1,24 @@
 
 <div class="container" >
 <div class="row ">
-<%= form_with model: appointment do |form| %>
+<%= form_with model: appointment, class: "container-sm" do |form| %>
 
-<div class=" col-auto mb-3">
+
+<div class=" col-auto mb-1">
+    <%= form.label :category_id, class: "form-label" %>
+    <br>
+    <%= form.select :category_id,
+        @categories.collect { |categorie| [ categorie.name, categorie.id ] },{prompt: 'Select category if need'}, {class: "categories form-select"}  %>
+    <% appointment.errors.full_messages_for(:category_id).each do |message| %>
+      <div><%= message %></div>
+    <% end %>      
+</div>
+
+<div class=" col-auto mb-1">
    <%= form.label :doctor_id , class: "form-label" %>
+   <br>
    <%= form.select :doctor_id,
-        doctors.collect { |doctor| [ doctor.first_name, doctor.id ] }  %>
+        doctors.collect { |doctor| [ doctor.first_name, doctor.id ] }, {}, {class: "form-select"} %>
     <% appointment.errors.full_messages_for(:doctor_id).each do |message| %>
       <div><%= message %></div>
     <% end %>    
@@ -14,16 +26,28 @@
 
 <div class=" col-auto mb-3">
     <%= form.label :date_at, class: "form-label" %>
-    <%= form.date_select(:date_at, order: [:day, :month, :year]) %>
+    <br>
+    <%= form.date_select(:date_at, { order: [:day, :month, :year], with_css_classes: true}, { class: "form-select"}) %>
     <% appointment.errors.full_messages_for(:date_at).each do |message| %>
       <div><%= message %></div>
     <% end %>  
 </div>
 
-<div class=" col-auto mb-3">
-    <%= form.submit %>
+<div class="col-auto mb-3">
+    <%= form.submit class: "btn btn-primary" %>
 </div>
 
 <% end %>
 </div>
+
+<script>
+
+$('.categories').on('change', function(){
+    var currentVal = $(this).val();
+   // debugger;
+    window.location.href = "<%= new_appointment_path%>?category_id="+ currentVal
+});
+</script>
+
+
 </div>

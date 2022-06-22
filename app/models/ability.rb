@@ -17,7 +17,7 @@ class Ability
     end
 
     if user.doctor?
-      can :complete, Appointment
+      can :complete, Appointment, doctor: user.doctor
       can :read, Appointment, doctor: user.doctor
     end
 

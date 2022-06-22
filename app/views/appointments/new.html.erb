@@ -2,36 +2,7 @@
 
 <h2> New Appointment </h2>
 
-<%= form_with model: @appointment do |form| %>
 
-<%= collection_select('category', "id", @categories , :id, :name, { prompt: 'Select category if need', selected: @category.id}, {class: 'categories'} ) %>
+<%= render "form", appointment: @appointment, categories: @categories, doctors: @doctors  %>
 
-<div class="form-select">
-   <%= form.label :doctor_id %>
-   <br>
-   <%= form.select :doctor_id,
-        @doctors.collect { |doctor| [ doctor.first_name, doctor.id ] }  %>
-    <br>    
-</div>
 
-<div class="form-select-date">
-    <%= form.label :date_at %>
-    <br>
-    <%= form.date_select(:date_at, order: [:day, :month, :year]) %>
-    <br>
-</div>
-
-<div>
-    <br>
-    <%= form.submit %>
-</div>
-
-<% end %>
-<script>
-
-$('.categories').on('change', function(){
-    var currentVal = $(this).val();
-    debugger;
-    window.location.href = "<%= new_appointment_path%>?category_id=" + currentVal
-});
-</script>

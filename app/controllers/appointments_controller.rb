@@ -1,7 +1,9 @@
 class AppointmentsController < ApplicationController
     def index
       @model = current_user.doctor? ? Doctor : Patient
-      @appointments = @model.find_by(user: current_user).appointments
+      @appointments = @model.find_by(user: current_user)
+                            .appointments
+                            .order(status: :asc, date_at: :asc, id: :asc)
     end
     
     def show
