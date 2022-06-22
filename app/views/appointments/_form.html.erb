@@ -3,16 +3,15 @@
 <div class="row ">
 <%= form_with model: appointment, class: "container-sm" do |form| %>
 
-
 <div class=" col-auto mb-1">
     <%= form.label :category_id, class: "form-label" %>
-    <br>
-    <%= form.select :category_id,
-        @categories.collect { |categorie| [ categorie.name, categorie.id ] },{prompt: 'Select category if need'}, {class: "categories form-select"}  %>
+    <br>   
+    <%= collection_select('category', "id", categories , :id, :name, { prompt: 'Select category if need' }, {class: 'categories form-select'} ) %>
+    
     <% appointment.errors.full_messages_for(:category_id).each do |message| %>
       <div><%= message %></div>
     <% end %>      
-</div>
+ </div>
 
 <div class=" col-auto mb-1">
    <%= form.label :doctor_id , class: "form-label" %>
@@ -41,13 +40,11 @@
 </div>
 
 <script>
-
-$('.categories').on('change', function(){
+ $('.categories').on('change', function(){
     var currentVal = $(this).val();
    // debugger;
     window.location.href = "<%= new_appointment_path%>?category_id="+ currentVal
 });
 </script>
-
 
 </div>

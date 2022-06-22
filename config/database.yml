@@ -17,5 +17,5 @@ test:
 
 production:
   <<: *default
-  database: hospital_production
-  url: <%= ENV['DATABASE_URL']%>
+  database: hospital_development
+  # url: <%= ENV['DATABASE_URL']%>
