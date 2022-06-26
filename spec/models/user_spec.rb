@@ -9,4 +9,9 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_numericality_of(:phone_number) }
     it { is_expected.to validate_length_of(:phone_number).is_at_least(10).is_at_most(15) }
   end
+   
+  it '#full_name' do
+    expect(subject).to eq("#{first_name} #{last_name}")
+  end  
+
 end
