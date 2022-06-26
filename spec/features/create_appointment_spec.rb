@@ -7,10 +7,15 @@ RSpec.feature 'Appointment create', type: :feature do
 
   let!(:patient) { create :patient }
   let!(:doctor) { create :doctor }
+  let!(:category) {create(:category, name: 'Therapist') }
 
   before { login_as(patient.user) }
 
   scenario 'create new appointment' do
+    visit new_appointment_path()
+
+    expect(page).to have_text("New Appointment")
+    # select('Therapist', from:'Therapist' )
   
   end  
 end  
