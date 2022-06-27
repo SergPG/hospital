@@ -15,7 +15,14 @@ RSpec.feature 'Appointment create', type: :feature do
     visit new_appointment_path()
 
     expect(page).to have_text("New Appointment")
-    # select('Therapist', from:'Therapist' )
+    select(category.name, from:'category_id' )
+    select(doctor.full_name, from:'appointment_doctor_id' )
+    #select('', from:'appointment_date_at' )
+    
+    click_button 'Create Appointment'
+    expect(page).to have_text("Appointment for #{patient.full_name}")
+    # save_and_open_page
+
   
   end  
 end  
