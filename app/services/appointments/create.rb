@@ -21,7 +21,7 @@ module Appointments
 
     def validate_doctor_appointment_count
       errors.push(doctor_id: 'can not be empty') if doctor.nil?
-      return unless doctor.appointments.scheduled.count >= 10
+      return unless doctor.appointments.scheduled.count >= Doctor::MAX_APPOINTMENTS
 
       errors.push(doctor_id: "already has #{Doctor::MAX_APPOINTMENTS} appointments")
     end
