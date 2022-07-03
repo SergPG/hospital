@@ -39,15 +39,9 @@ RSpec.describe Appointments::Create, type: :class do
      
         # let(:errors) {subject[:errors]}
           it "what service return - (errors)" do
-            
-           expect(subject[:errors].first[:doctor_id]).to eq("already has 10 appointments")
-         
+            expect(subject[:errors]).to include(doctor_id: "already has 10 appointments")     
           #  binding.pry
         end  
-
-        #  binding.pry
       end  
-      
-
   end
 end
